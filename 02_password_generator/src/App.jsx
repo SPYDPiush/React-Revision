@@ -36,7 +36,7 @@ function App() {
   }
 
 
-  const textcopy = () => {
+  const textcopy = (newpassword) => {
     if(!newpassword){
     alert('Password Copy', newpassword)
     }
@@ -52,13 +52,13 @@ function App() {
               Password Generator
             </h1>
             <div className="flex flex-wrap justify-between mt-5">
-              <input type="text" className="rounded-md px-3 py-2 text-black text-xl border-black border-2 outline-none w-[80%]" value={inputvalue}/>
-              <button className="px-3 py-2 rounded-md bg-black text-white" onClick={textcopy}>Copy</button>
+              <input type="text" className="rounded-md px-3 py-2 text-black text-xl border-black border-2 outline-none w-[80%]" value={inputvalue} readOnly/>
+              <button className="px-3 py-2 rounded-md bg-black text-white" onClick={() => textcopy(newpassword)}>Copy</button>
             </div>
             <div className="flex flex-wrap justify-between mt-5">
               <input type="range" min={0} max={20} className="w-[40%]" onChange={ (e) => setLength(e.target.valueAsNumber)} />
               <div className="">
-                {Length} Length
+                ({Length}) Length
               </div>
               <div className="">
                 <input type="checkbox" id="number" onChange={() => setChecknumber(!checknumber)}/>
