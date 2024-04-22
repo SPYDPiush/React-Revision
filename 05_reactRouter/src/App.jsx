@@ -1,3 +1,9 @@
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Home from "./components/Home/Home";
+import { Outlet } from "react-router-dom";
+
+
 
 
 function App() {
@@ -5,7 +11,9 @@ function App() {
 
   return (
    <>
-   <div className="text-3xl bg-yellow-300">Hello</div>
+   <Header />
+   <Outlet />
+   <Footer />
    </>
   )
 }
