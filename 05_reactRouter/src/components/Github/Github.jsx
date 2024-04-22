@@ -27,17 +27,14 @@ export default function Github () {
 
 export const githubloader  = async () => {
 
-    try{
+    
 
     const respone = await fetch('https://api.github.com/users/SPYDPiush')
-    console.log(respone.json())
-    return respone.json()
-    }
-    catch(error){
-        console.error("ERrror found is :" , error)
-    }
-
+    const res=  await respone.json()
+    // console.log(res)
+    return res
         
     }
+
 
     
