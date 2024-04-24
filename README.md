@@ -6,3 +6,6 @@ react Revision folder where we revise react in depth
 03_password_generator done all use hooks and optimize their logic
 
 
+08_todo_useContext_localstorage in this project make todo using useContext and local storage.
+
+
