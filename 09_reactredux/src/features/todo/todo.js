@@ -1,31 +1,35 @@
-import {createSlice, nanoid} from "@reduxjs/toolkit";
+import {createSlice, nanoid } from "@reduxjs/toolkit";
 
 
 
-initialState : {
+const initialState = {
   todos : [{
     id:1,
-    mgs : "hello world"
-  }]
+    text : "hello world"
+  },
+{
+  id:2,
+  text: "how are you!"
+}]
 }
 
 
 
-const todoSlice = createSlice({
+export const todoSlice = createSlice({
 
   name : 'todo',
   initialState,
   reducers : {
     addtodo : (state,action) => {
       const todo = {
-        id : nanoid,
-        text : action.payload.text // text : action.payload.text in this when text property call so we neglacte the action.payload.text
+        id : nanoid(),
+        text : action.payload // text : action.payload.text in this when text property call so we neglacte the action.payload.text
       }
 
       state.todos.push(todo)
     },
     removetodo : (state,action) => {
-      state.todos = state.todos.filter( (prev) => prev.action != prev.id)
+      state.todos = state.todos.filter((prev) => prev.id !== action.payload)
     },
     updatetodo : (state,action) => {
       
@@ -35,3 +39,7 @@ const todoSlice = createSlice({
   
 
 })
+
+export const {addtodo,removetodo,updatetodo} = todoSlice.actions
+
+export default todoSlice.reducer
