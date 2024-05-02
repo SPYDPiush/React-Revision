@@ -6,21 +6,25 @@ export class Authservice {
   account;
 
   constructor() {
-    this.client.setEndpoint(conf.appwriteurl).setProject(conf.projectid);
+    this.client
+    .setEndpoint(conf.appwriteurl)
+    .setProject(conf.projectid);
 
     this.account = new Account(this.client);
   }
 
-  async createAccount() {
+  async createAccount({email,password,name}) {
     try {
-      const createacc = await this.account.create(ID.unique(), email, password);
+      const createacc = await this.account.create(ID.unique(), email, password,name);
 
       if (createacc){
         // if account create then direct login to that user.
         // we have second option also available where you send a successful mgs for creating user.then after that login.
+        return this.login({email,password})
 
       }
       else{
+        return createacc
 
       }
     } catch (error) {
@@ -28,11 +32,11 @@ export class Authservice {
     }
   }
 
-  async login(){
+  async login({email,password}){
 
     try{
 
-      return this.account.createEmailSession({email,password})
+      return await this.account.createEmailSession(email,password)
 
     }
     catch(err){
@@ -42,7 +46,7 @@ export class Authservice {
     }
   }
 
-  async currentSession() {
+  async getCurrentUser() {
 
 
     try{
@@ -66,7 +70,7 @@ export class Authservice {
   }
 }
 
-export const authservice = new Authservice();
+const authservice = new Authservice();
 
 
-export default Authservice;
+export default authservice;
